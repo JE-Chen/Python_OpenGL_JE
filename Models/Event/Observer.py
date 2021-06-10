@@ -1,9 +1,9 @@
-class Base_Observer():
+class Base_Observer:
 
     def __init__(self):
         pass
 
-    class Observer():
+    class Observer:
         def register(self, listener):
             raise NotImplementedError("Must subclass me")
 
@@ -13,8 +13,7 @@ class Base_Observer():
         def notify_listeners(self, event):
             raise NotImplementedError("Must subclass me")
 
-
-    class Listener():
+    class Listener:
         def __init__(self, name, Object):
             self.name = name
             Object.register(self)
@@ -22,14 +21,13 @@ class Base_Observer():
         def notify(self, event):
             print(self.name, "received event", event)
 
-
     class Object(Observer):
         def __init__(self):
             self.listeners = []
             self.data = None
 
-        def Action(self,Event):
-            self.data = Event
+        def action(self, event):
+            self.data = event
             return self.data
 
         def register(self, listener):
@@ -41,20 +39,4 @@ class Base_Observer():
         def notify_listeners(self, event):
             for listener in self.listeners:
                 listener.notify(event)
-
-def Test():
-    print('Hello Observer')
-
-if __name__ == "__main__":
-    Base = Base_Observer()
-    Object = Base.Object()
-    listenerA = Base.Listener("<listener A>", Object)
-    listenerB = Base.Listener("<listener B>", Object)
-
-    Object.notify_listeners("<event 1>")
-
-    action = Object.Action(Test)
-    Object.notify_listeners(action)
-
-    Object.notify_listeners("<event 3>")
 

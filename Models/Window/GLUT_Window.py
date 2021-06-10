@@ -1,25 +1,27 @@
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 
+
 class GLUT_Window():
 
     def __init__(self):
-        self.Draw_Function=self.Default_Draw
+        self.Draw_Function = self.Default_Draw
 
-    def Default_Draw(self):
-        glClearColor(0.64,0.64,0.64,1)
+    @staticmethod
+    def Default_Draw():
+        glClearColor(0.64, 0.64, 0.64, 1)
         # 清除之前畫面
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         glRotatef(0.1, 0, 5, 0)  # (角度,x,y,z)
         glutWireTeapot(0.5)
         glutSwapBuffers()
         # 刷新顯示
-        #glFlush()
+        # glFlush()
 
-    def Set_Draw_Function(self,Draw_Function):
+    def Set_Draw_Function(self, Draw_Function):
         self.Draw_Function = Draw_Function
 
-    def Show_Window(self,Window_Name=b"Glut_Window",Position_X=0,Position_Y=0,Window_Width=500,Window_Height=500):
+    def Show_Window(self, Window_Name=b"Glut_Window", Position_X=0, Position_Y=0, Window_Width=500, Window_Height=500):
         # 使用glut初始化OpenGL
         glutInit()
         '''
